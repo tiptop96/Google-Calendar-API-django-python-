@@ -1,0 +1,23 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+<div class="panel panel-heading">
+<h3>{{event.title}}</h3>
+<h6>on {{event.date}}</h6>
+<h4>{{event.body|safe|linebreaks}}</h4>
+</div>
+<div class="panel panel-body">
+<form method='POST' action=''>{% csrf_token %}
+{% for field in form %}
+	<div class="form-Group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<span class="text-danger small">{{ field.errors }}</span>	
+		</div>
+		<label class="control-label col-sm-2">{{ field.label_tag }}</label>
+		<div class="col-sm10">{{ field }}</div>
+	</div>
+{% endfor %}
+<button type='submit' class="btn btn-primary" style="margin-top: 10px"/>Update</button>
+</form>
+</div>
+{% endblock %}
